@@ -3,7 +3,7 @@
 A simple machine learning project that classifies news articles into categories using NLP and Naive Bayes classifier.
 
 Features: 
-- Text Preprocessing
+- Text Preprocessing: Lowercasing, stopword removal, punctuation removal
 - Machine Learning model : Naive Bayes with TF-IDF vectorization
 - User-Friendly Flask web application
 - Interactive CLI
@@ -11,7 +11,7 @@ Features:
 
 Performance:
 - Accuracy: 89.4%
-- Categories : 4 news categories 
+- Categories : 4 news categories (The class ids are numbered 1-4 where 1 represents World, 2 represents Sports, 3 represents Business and 4 represents Sci/Tech.)
 - Test Data: 24,000 news articles
 - Training Data: 120,000 news articles
 

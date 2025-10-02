@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import joblib
 import os
+from config import get_category_name  
 
 app = Flask(__name__)
 
@@ -27,10 +28,12 @@ def home():
             textarea { width: 100%; height: 150px; margin: 10px 0; padding: 10px; }
             button { background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; }
             .result { margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 5px; }
+            .category { font-weight: bold; color: #007bff; }
         </style>
     </head>
     <body>
-        <h1>News Classification</h1>
+        <h1>📰 News Classification</h1>
+        <p><strong>Categories:</strong> World (1), Sports (2), Business (3), Sci/Tech (4)</p>
         <form id="classifyForm">
             <textarea id="textInput" placeholder="Enter news text here..."></textarea>
             <br>
@@ -60,7 +63,7 @@ def home():
                     
                     const data = await response.json();
                     resultDiv.innerHTML = `<div class="result">
-                        <strong>Predicted Category:</strong> ${data.category}<br>
+                        <strong>Predicted Category:</strong> <span class="category">${data.category_name} (ID: ${data.category_id})</span><br>
                         <strong>Text:</strong> ${text.substring(0, 100)}...
                     </div>`;
                 } catch (error) {
@@ -78,7 +81,15 @@ def predict():
     text = data.get('text', '')
     text_vec = vectorizer.transform([text])
     pred = model.predict(text_vec)[0]
-    return jsonify({"category": int(pred)})
+    
+    # Get category info
+    category_info = get_category_name(pred)
+    
+    return jsonify({
+        "category_id": category_info["id"],
+        "category_name": category_info["name"],
+        "category_numeric": int(pred)
+    })
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
