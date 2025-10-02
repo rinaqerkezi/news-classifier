@@ -9,26 +9,21 @@ import matplotlib.pyplot as plt
 from preprocess import load_and_clean_data
 from collections import Counter
 
+df_train = load_and_clean_data(r"C:/Users/rinaq/OneDrive/Desktop/news-classifier/data/train.csv")
 
-df = load_and_clean_data("../data/train.csv")
-
-
-sns.countplot(x='Category', data=df)
+sns.countplot(x='Category', data=df_train)
 plt.title("Numri i mostrave per kategori/number of samples:")
 plt.show()
 
-all_words = ' '.join(df['Text']).split()
+all_words = ' '.join(df_train['Text']).split()
 most_common = Counter(all_words).most_common(10)
 print("Fjalet qe u perdoren me se shpeshti/Most frequent word:", most_common)
 
-
-X_train, X_test, y_train, y_test = train_test_split(df['Text'], df['Category'], test_size=0.2, random_state=42)
-
+X_train, X_test, y_train, y_test = train_test_split(df_train['Text'], df_train['Category'], test_size=0.2, random_state=42)
 
 vectorizer = TfidfVectorizer(max_features=5000)
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
-
 
 model = MultinomialNB()
 model.fit(X_train_vec, y_train)

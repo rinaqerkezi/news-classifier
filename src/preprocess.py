@@ -13,13 +13,18 @@ def clean_text(text):
     return text
 
 def load_and_clean_data(filepath):
-    df=pd.read_csv(filepath, header=None)
-    df.columns=['ClassIndex','Title', 'Description']
+    
+    df = pd.read_csv(filepath)
+    
+   
     df['Text'] = df['Title'] + " " + df['Description']
     df['Text'] = df['Text'].apply(clean_text)
-    df['Category'] = df['ClassIndex'] - 1
+    
+   
+    df['Category'] = df['Class Index'].astype(int) - 1
+    
     return df[['Text', 'Category']]
 
 if __name__ == "__main__":
-    df_train = load_and_clean_data("../data/train.csv")
-    print(df_train.head())
+   df_train = load_and_clean_data(r"C:/Users/rinaq/OneDrive/Desktop/news-classifier/data/train.csv")
+   print(df_train.head())
