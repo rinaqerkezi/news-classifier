@@ -8,6 +8,7 @@ Features:
 - User-Friendly Flask web application
 - Interactive CLI
 - Model Training
+- Model Comparison : Logistic Regression and Naive Bayes
 
 Performance:
 - Accuracy: 89.4%
@@ -41,7 +42,8 @@ python src/predict.py
 
 
 -if you want to retrain:
-python src/train.py
+-python src/train.py 
+- after training you can see the bar chart and confusion matric in the outputs folder
 
 
 link for the news articles dataset :

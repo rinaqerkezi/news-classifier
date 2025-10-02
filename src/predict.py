@@ -7,7 +7,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(current_dir)
 models_dir = os.path.join(project_root, 'models')
 
-model_path = os.path.join(models_dir, 'news_model.pkl')
+model_path = os.path.join(models_dir, 'best_model.pkl')  
 vectorizer_path = os.path.join(models_dir, 'vectorizer.pkl')
 
 print(f"Looking for model at: {model_path}")
