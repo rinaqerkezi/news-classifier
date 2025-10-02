@@ -82,7 +82,7 @@ def predict():
     text_vec = vectorizer.transform([text])
     pred = model.predict(text_vec)[0]
     
-    # Get category info
+   
     category_info = get_category_name(pred)
     
     return jsonify({

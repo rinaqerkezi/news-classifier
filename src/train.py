@@ -91,7 +91,6 @@ for name, model in models.items():
     print(f"  F1-Score:  {f1:.4f}")
     print(f"  Time:      {training_time:.2f}s")
     
-    # Check if this is the best model
     if accuracy > best_accuracy:
         best_accuracy = accuracy
         best_model_name = name
