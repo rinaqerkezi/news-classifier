@@ -14,12 +14,12 @@ df = load_and_clean_data("../data/train.csv")
 
 
 sns.countplot(x='Category', data=df)
-plt.title("Number of samples per category")
+plt.title("Numri i mostrave per kategori/number of samples:")
 plt.show()
 
 all_words = ' '.join(df['Text']).split()
-most_common = Counter(all_words).most_common(20)
-print("Most frequent words:", most_common)
+most_common = Counter(all_words).most_common(10)
+print("Fjalet qe u perdoren me se shpeshti/Most frequent word:", most_common)
 
 
 X_train, X_test, y_train, y_test = train_test_split(df['Text'], df['Category'], test_size=0.2, random_state=42)

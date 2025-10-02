@@ -1,9 +1,9 @@
 import pandas as pd
 import nltk
-from ntlk.corpus import stopwords
+from nltk.corpus import stopwords
 import re
 
-ntlk.download('stopwords')
+nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
 def clean_text(text):
